@@ -10,6 +10,7 @@ export class ProductController {
             }
 
             const result = await ProductService.searchProducts(query);
+            console.log(result)
             return res.json(result);
         } catch (error) {
             console.error("Error in search:", error);

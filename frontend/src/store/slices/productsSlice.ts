@@ -1,23 +1,17 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
-
-interface Price {
-    currency: string;
-    amount: number;
-    decimals: number;
-}
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { fetchProductsService, fetchProductDetailService } from "../../services/productService.ts";
 
 interface Product {
     id: string;
     title: string;
-    price: Price;
-    picture: string;
+    price: string;
+    imageUrl: string;
     condition: string;
-    free_shipping: boolean;
+    freeShipping: boolean;
 }
 
 interface ProductDetail extends Product {
-    sold_quantity: number;
+    soldQuantity: number;
     description: string;
 }
 
@@ -37,14 +31,14 @@ const initialState: ProductsState = {
     error: null,
 };
 
+// Ahora usamos el servicio en el AsyncThunk
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
     async (query: string, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`/api/items?q=${query}`);
-            return response.data;
+            return await fetchProductsService(query);
         } catch (error: any) {
-            return rejectWithValue(error.response?.data || "Error al obtener productos");
+            return rejectWithValue(error.message);
         }
     }
 );
@@ -53,10 +47,9 @@ export const fetchProductDetail = createAsyncThunk(
     "products/fetchProductDetail",
     async (id: string, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`/api/items/${id}`);
-            return response.data;
+            return await fetchProductDetailService(id);
         } catch (error: any) {
-            return rejectWithValue(error.response?.data || "Error al obtener detalles del producto");
+            return rejectWithValue(error.message);
         }
     }
 );
@@ -90,7 +83,7 @@ const productsSlice = createSlice({
             })
             .addCase(fetchProductDetail.fulfilled, (state, action) => {
                 state.loading = false;
-                state.selectedProduct = action.payload.item;
+                state.selectedProduct = action.payload;
             })
             .addCase(fetchProductDetail.rejected, (state, action) => {
                 state.loading = false;

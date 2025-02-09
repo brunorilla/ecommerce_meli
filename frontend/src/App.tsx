@@ -1,16 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SearchBox from "./components/SearchBox";
-import SearchResults from "./components/SearchResults.tsx";
-import ProductDetail from "./components/ProductDetail";
+import HomePage from "./pages/HomePage";
+import SearchResultsPage from "./pages/SearchResultsPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import Navbar from "./components/NavBar.tsx";
 
 function App() {
     return (
         <Router>
-            <SearchBox />
+            <Navbar />
             <Routes>
-                <Route path="/" element={<p>Buscá un producto</p>} />
-                <Route path="/items" element={<SearchResults />} />
-                <Route path="/items/:id" element={<ProductDetail />} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/items" element={<SearchResultsPage />} />
+                <Route path="/items/:id" element={<ProductDetailPage />} />
             </Routes>
         </Router>
     );

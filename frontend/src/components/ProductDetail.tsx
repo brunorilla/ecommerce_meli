@@ -12,10 +12,10 @@ const ProductDetail = () => {
     return (
         <div>
             <h2>{selectedProduct.title}</h2>
-            <img src={selectedProduct.picture} alt={selectedProduct.title} />
-            <p>Precio: ${selectedProduct.price.amount}</p>
+            <img src={selectedProduct.imageUrl} alt={selectedProduct.title} />
+            <p>Precio: ${selectedProduct.price}</p>
             <p>Condición: {selectedProduct.condition === "new" ? "Nuevo" : "Usado"}</p>
-            <p>Envío: {selectedProduct.free_shipping ? "Gratis" : "No incluido"}</p>
+            <p>Envío: {selectedProduct.freeShipping ? "Gratis" : "No incluido"}</p>
             <p>Descripción: {selectedProduct.description}</p>
         </div>
     );

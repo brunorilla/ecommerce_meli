@@ -1,0 +1,15 @@
+{
+  "search_placeholder": "Nunca pare de buscar",
+  "search_button": "Pesquisar",
+  "loading": "Carregando...",
+  "no_results": "Nenhum produto encontrado.",
+  "error": "Erro ao obter dados.",
+  "results_for": "Resultados para",
+  "homepage_message": "Bem",
+  "product_detail": {
+    "price": "Preço:",
+    "condition": "Condição:",
+    "delivery": "Entrega:",
+    "description": "Descrição:"
+  }
+}
