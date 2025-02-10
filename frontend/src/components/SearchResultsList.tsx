@@ -9,7 +9,7 @@ const SearchResultsList = ({results}: SearchResultsListProps) => {
     return (
         <ul className="grid grid-cols-12 gap-4">
             {results.map((product: Product) => (
-                <SearchResultsItem key={product.id} product={product} />
+                <li className={"col-span-12 p-4 border-b border-gray-200"} key={product.id}><SearchResultsItem  product={product} /></li>
             ))}
         </ul>
     );

@@ -1,11 +1,13 @@
 {
   "search_placeholder": "Nunca pare de buscar",
-  "search_button": "Pesquisar",
+  "search_button": "Buscar",
+  "search_label": "Pesquise seus produtos.",
+  "select_language": "Escolha seu idioma.",
   "loading": "Carregando...",
   "no_results": "Nenhum produto encontrado.",
-  "error": "Erro ao obter dados.",
+  "error": "Erro ao obter os dados.",
   "results_for": "Resultados para",
-  "homepage_message": "Bem",
+  "homepage_message": "Olá",
   "product_detail": {
     "price": "Preço:",
     "condition": "Condição:",

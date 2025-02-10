@@ -23,3 +23,12 @@ export const fetchProductDetailService = async (id: string) => {
         throw new Error(error.response?.data || "Error al obtener detalles del producto");
     }
 };
+
+export const fetchProductCategoryService = async (categoryId: string) => {
+    try {
+        const response = await axios.get(`${API_URL}/api/categories/${categoryId}`);
+        return response.data.path_from_root.map((cat: { name: string }) => cat.name);
+    } catch (error: any) {
+        throw new Error(error.response?.data || "Error al obtener categoría del producto");
+    }
+};

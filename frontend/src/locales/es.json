@@ -1,6 +1,8 @@
 {
   "search_placeholder": "Nunca dejes de buscar",
   "search_button": "Buscar",
+  "search_label": "Busque sus productos.",
+  "select_language": "Elija su idioma.",
   "loading": "Cargando...",
   "no_results": "No se encontraron productos.",
   "error": "Error al obtener los datos.",

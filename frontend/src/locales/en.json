@@ -1,6 +1,8 @@
 {
   "search_placeholder": "Never stop searching",
   "search_button": "Search",
+  "search_label": "Search for products",
+  "select_language": "Select language",
   "loading": "Loading...",
   "no_results": "No products found.",
   "error": "Error fetching data.",

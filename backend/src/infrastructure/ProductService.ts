@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Product, SearchResult, ProductDetailResult } from "../domain/Product";
+import {  SearchResult, ProductDetailResult } from "../domain/Product";
 
 const API_URL = "https://api.mercadolibre.com";
 
@@ -31,6 +31,9 @@ export class ProductService {
             axios.get(`${API_URL}/items/${id}`),
             axios.get(`${API_URL}/items/${id}/description`)
         ]);
+
+        console.log(itemRes.data)
+        console.log(descRes.data)
 
         const item = itemRes.data;
         const description = descRes.data.plain_text;

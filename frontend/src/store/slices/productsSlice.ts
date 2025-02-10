@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchProductsService, fetchProductDetailService } from "../../services/productService.ts";
+import {
+    fetchProductsService,
+    fetchProductDetailService,
+    fetchProductCategoryService
+} from "../../services/productService.ts";
 
 interface Product {
     id: string;
@@ -31,7 +35,6 @@ const initialState: ProductsState = {
     error: null,
 };
 
-// Ahora usamos el servicio en el AsyncThunk
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
     async (query: string, { rejectWithValue }) => {
@@ -54,12 +57,24 @@ export const fetchProductDetail = createAsyncThunk(
     }
 );
 
+export const fetchProductCategory = createAsyncThunk(
+    "products/fetchProductCategory",
+    async (categoryId: string, { rejectWithValue }) => {
+        try {
+            return await fetchProductCategoryService(categoryId);
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 const productsSlice = createSlice({
     name: "products",
     initialState,
     reducers: {
         clearSelectedProduct: (state) => {
             state.selectedProduct = null;
+            state.categories = [];
         },
     },
     extraReducers: (builder) => {
@@ -88,7 +103,11 @@ const productsSlice = createSlice({
             .addCase(fetchProductDetail.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string;
+            })
+            .addCase(fetchProductCategory.fulfilled, (state, action) => {
+                state.categories = action.payload;
             });
+
     },
 });
 
