@@ -16,7 +16,6 @@ const SearchResultsPage = () => {
     if (loading)  return <LoadingScreen />;
     if (error) return <ErrorMessage message={t("error_api_message")} />;
     if (!searchResults.length) return <ErrorMessage message={t("no_products_found")} />;
-    debugger;
     return (
         <section className="container mx-auto px-4 bg-white">
             <Breadcrumb categories={categories} />

@@ -26,7 +26,7 @@ interface ProductDetail extends Product {
     categories: ProductCategory[];
 }
 
-interface ProductsState {
+export interface ProductsState {
     loading: boolean;
     searchResults: Product[];
     selectedProduct: ProductDetail | null;

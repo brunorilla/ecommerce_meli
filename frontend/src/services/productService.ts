@@ -13,7 +13,6 @@ export const fetchProductsService = async (query?: string, category?: string) =>
         }
 
         const response = await axios.get(url);
-        debugger;
         return {
             items: adaptProductList(response.data.items),
             categories: response.data.categories
