@@ -3,17 +3,20 @@ import { useSearchProducts } from "../hooks/useSearchProducts";
 import { useTranslation } from "react-i18next";
 import SearchResultsList from "../components/SearchResultsList";
 import Breadcrumb from "../components/Breadcrumb.tsx";
+import LoadingScreen from "../components/LoadingScreen.tsx";
+import ErrorMessage from "../components/ErrorMessage.tsx";
 
 const SearchResultsPage = () => {
     const [searchParams] = useSearchParams();
     const query = searchParams.get("search") || "";
-    const { loading, searchResults, error, categories } = useSearchProducts(query);
+    const category = searchParams.get("category") || "";
+    const { loading, searchResults, error, categories } = useSearchProducts(query, category);
     const { t } = useTranslation();
 
-    if (loading) return <p className="text-center text-gray-600">{t("loading_products")}</p>;
-    if (error) return <p className="text-center text-red-500">{t("error")}: {error}</p>;
-    if (!searchResults.length) return <p className="text-center text-gray-600">{t("no_products_found")}</p>;
-
+    if (loading)  return <LoadingScreen />;
+    if (error) return <ErrorMessage message={t("error_api_message")} />;
+    if (!searchResults.length) return <ErrorMessage message={t("no_products_found")} />;
+    debugger;
     return (
         <section className="container mx-auto px-4 bg-white">
             <Breadcrumb categories={categories} />

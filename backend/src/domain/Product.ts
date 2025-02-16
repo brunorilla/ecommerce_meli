@@ -9,6 +9,11 @@ export interface Price {
     decimals: number;
 }
 
+export interface ProductCategory {
+    id: string;
+    name: string;
+}
+
 export interface Product {
     id: string;
     title: string;
@@ -21,11 +26,13 @@ export interface Product {
 export interface ProductDetail extends Product {
     sold_quantity: number;
     description: string;
+    categories: ProductCategory[]
 }
+
 
 export interface SearchResult {
     author: Author;
-    categories: string[];
+    categories: ProductCategory[];
     items: Product[];
 }
 

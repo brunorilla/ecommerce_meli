@@ -14,6 +14,12 @@ interface BackendProduct {
 interface BackendProductDetail extends BackendProduct {
     sold_quantity: number;
     description: string;
+    categories: ProductCategory[];
+}
+
+export interface ProductCategory {
+    id: string;
+    name: string;
 }
 
 export interface Product {
@@ -28,6 +34,7 @@ export interface Product {
 export interface ProductDetail extends Product {
     soldQuantity: number;
     description: string;
+    categories: ProductCategory[];
 }
 
 export const adaptProductList = (backendProducts: BackendProduct[]): Product[] => {
@@ -49,5 +56,6 @@ export const adaptProductDetail = (backendProduct: BackendProductDetail): Produc
     condition: backendProduct.condition,
     freeShipping: backendProduct.free_shipping,
     soldQuantity: backendProduct.sold_quantity,
-    description: backendProduct.description
+    description: backendProduct.description,
+    categories: backendProduct.categories
 });

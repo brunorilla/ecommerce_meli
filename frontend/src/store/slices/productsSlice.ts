@@ -5,6 +5,12 @@ import {
     fetchProductCategoryService
 } from "../../services/productService.ts";
 
+
+interface ProductCategory  {
+    id: string;
+    name: string;
+}
+
 interface Product {
     id: string;
     title: string;
@@ -17,13 +23,14 @@ interface Product {
 interface ProductDetail extends Product {
     soldQuantity: number;
     description: string;
+    categories: ProductCategory[];
 }
 
 interface ProductsState {
     loading: boolean;
     searchResults: Product[];
     selectedProduct: ProductDetail | null;
-    categories: string[];
+    categories: ProductCategory[];
     error: string | null;
 }
 
@@ -37,9 +44,9 @@ const initialState: ProductsState = {
 
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
-    async (query: string, { rejectWithValue }) => {
+    async ({ query, category }: { query?: string, category?: string }, { rejectWithValue }) => {
         try {
-            return await fetchProductsService(query);
+            return await fetchProductsService(query, category);
         } catch (error: any) {
             return rejectWithValue(error.message);
         }

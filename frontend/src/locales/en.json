@@ -4,6 +4,7 @@
   "search_label": "Search for products",
   "select_language": "Select language",
   "loading": "Loading...",
+  "reload_page": "Recargar página",
   "no_results": "No products found.",
   "error": "Error fetching data.",
   "results_for": "Results for",

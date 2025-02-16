@@ -4,13 +4,14 @@ import { ProductService } from "../infrastructure/ProductService";
 export class ProductController {
     static async search(req: Request, res: Response) {
         try {
-            const query = req.query.q as string;
-            if (!query) {
-                return res.status(400).json({ error: "Query parameter 'q' is required" });
+            const query = req.query.q as string | undefined;
+            const category = req.query.category as string | undefined;
+
+            if (!query && !category) {
+                return res.status(400).json({ error: "Either 'q' or 'category' parameter is required" });
             }
 
-            const result = await ProductService.searchProducts(query);
-            console.log(result)
+            const result = await ProductService.searchProducts(query, category);
             return res.json(result);
         } catch (error) {
             console.error("Error in search:", error);

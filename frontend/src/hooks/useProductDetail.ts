@@ -1,23 +1,18 @@
 import {RootState, useAppDispatch, useAppSelector} from "../store";
-import {fetchProductDetail, fetchProductCategory, clearSelectedProduct} from "../store/slices/productsSlice";
+import {fetchProductDetail, clearSelectedProduct} from "../store/slices/productsSlice";
 import {useEffect} from "react";
 
 export const useProductDetail = (id: string) => {
     const dispatch = useAppDispatch();
-    const {loading, selectedProduct, category, error} = useAppSelector(
+    const {loading, selectedProduct, categories, error} = useAppSelector(
         (state: RootState) => state.products
     );
 
     useEffect(() => {
-        dispatch(fetchProductDetail(id)).then((action) => {
-            if (action.payload?.category_id) {
-                dispatch(fetchProductCategory(action.payload.category_id));
-            }
-        });
-
+        dispatch(fetchProductDetail(id));
         return () => {
             dispatch(clearSelectedProduct());
         };
     }, [id, dispatch]);
-    return {loading, selectedProduct, category, error};
+    return {loading, selectedProduct, categories, error};
 };

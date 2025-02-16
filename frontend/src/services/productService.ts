@@ -1,11 +1,19 @@
 import axios from "axios";
-import { adaptProductList, adaptProductDetail } from "../adapters/productAdapter";
+import {adaptProductList, adaptProductDetail} from "../adapters/productAdapter";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const fetchProductsService = async (query: string) => {
+export const fetchProductsService = async (query?: string, category?: string) => {
     try {
-        const response = await axios.get(`${API_URL}/api/items?q=${query}`);
+        let url = `${API_URL}/api/items`;
+        if (query) {
+            url += `?q=${query}`;
+        } else if (category) {
+            url += `?category=${category}`;
+        }
+
+        const response = await axios.get(url);
+        debugger;
         return {
             items: adaptProductList(response.data.items),
             categories: response.data.categories

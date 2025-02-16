@@ -1,16 +1,34 @@
 import axios from "axios";
-import {  SearchResult, ProductDetailResult } from "../domain/Product";
+import {SearchResult, ProductDetailResult, ProductCategory} from "../domain/Product";
 
 const API_URL = "https://api.mercadolibre.com";
 
-const AUTHOR = { name: "Bruno", lastname: "Rilla Santiago" };
+const AUTHOR = {name: "Bruno", lastname: "Rilla Santiago"};
 
 export class ProductService {
-    static async searchProducts(query: string): Promise<SearchResult> {
-        const response = await axios.get(`${API_URL}/sites/MLA/search?q=${query}`);
-        const categories = response.data.filters.find((f: any) => f.id === "category")?.values[0]?.path_from_root.map((c: any) => c.name) || [];
+    static async searchProducts(query?: string, category?: string): Promise<SearchResult> {
+        let url = `${API_URL}/sites/MLA/search?`;
+        if (query) url += `q=${query}`;
+        if (category) url += `${query ? "&" : ""}category=${category}`;
 
-        const items = response.data.results.slice(0, 4).map((item: any) => ({
+        let categories: ProductCategory[] = [];
+
+        const response = await axios.get(url);
+
+        try {
+            categories = response.data.filters.find((f: any) => f.id === "category")?.values[0]?.path_from_root.map((c: any) => ({
+                id: c.id,
+                name: c.name
+            })) || [];
+        } catch (error: any) {
+            console.error("Error fetching categories in searchProducts", error.message);
+        }
+
+        if (!categories.length) {
+            categories = [{id: "unknown", name: "Categoría indeterminada"}];
+        }
+
+        const items = response.data.results.slice(0, 10).map((item: any) => ({
             id: item.id,
             title: item.title,
             price: {
@@ -23,7 +41,7 @@ export class ProductService {
             free_shipping: item.shipping.free_shipping,
         }));
 
-        return { author: AUTHOR, categories, items };
+        return {author: AUTHOR, categories, items};
     }
 
     static async getProductDetail(id: string): Promise<ProductDetailResult> {
@@ -32,11 +50,12 @@ export class ProductService {
             axios.get(`${API_URL}/items/${id}/description`)
         ]);
 
-        console.log(itemRes.data)
-        console.log(descRes.data)
 
         const item = itemRes.data;
         const description = descRes.data.plain_text;
+
+        const categoryRes = await axios.get(`${API_URL}/categories/${item.category_id}`);
+        const categories = categoryRes.data.path_from_root;
 
         return {
             author: AUTHOR,
@@ -53,6 +72,7 @@ export class ProductService {
                 free_shipping: item.shipping.free_shipping,
                 sold_quantity: item.sold_quantity,
                 description,
+                categories
             }
         };
     }
