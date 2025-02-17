@@ -9,6 +9,7 @@ interface BackendProduct {
     picture: string;
     condition: string;
     free_shipping: boolean;
+    location: string;
 }
 
 interface BackendProductDetail extends BackendProduct {
@@ -29,6 +30,7 @@ export interface Product {
     imageUrl: string;
     condition: string;
     freeShipping: boolean;
+    location: string;
 }
 
 export interface ProductDetail extends Product {
@@ -44,7 +46,8 @@ export const adaptProductList = (backendProducts: BackendProduct[]): Product[] =
         price: `${product.price.currency} ${product.price.amount}`,
         imageUrl: product.picture,
         condition: product.condition,
-        freeShipping: product.free_shipping
+        freeShipping: product.free_shipping,
+        location: product.location
     }));
 };
 
@@ -57,5 +60,6 @@ export const adaptProductDetail = (backendProduct: BackendProductDetail): Produc
     freeShipping: backendProduct.free_shipping,
     soldQuantity: backendProduct.sold_quantity,
     description: backendProduct.description,
-    categories: backendProduct.categories
+    categories: backendProduct.categories,
+    location: backendProduct.location
 });

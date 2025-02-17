@@ -1,20 +1,16 @@
 import { useTranslation } from "react-i18next";
-import {ProductDetail} from "../adapters/productAdapter.ts";
+import { ProductDetail } from "../adapters/productAdapter.ts";
 
 interface ProductDetailProps {
-    product: ProductDetail
+    product: ProductDetail;
 }
 
 const Product = ({ product }: ProductDetailProps) => {
     const { t } = useTranslation();
 
     return (
-        <article className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
-            <header>
-                <h1 className="text-2xl font-bold text-gray-900">{product.title}</h1>
-            </header>
-
-            <figure className="flex justify-center">
+        <article className="container mx-auto grid grid-cols-12 gap-6 p-6 bg-white shadow-md rounded-lg">
+            <figure className="col-span-6 flex justify-center">
                 <img
                     src={product.imageUrl}
                     alt={product.title}
@@ -25,26 +21,25 @@ const Product = ({ product }: ProductDetailProps) => {
                 />
             </figure>
 
-            <section className="mt-4">
-                <dl className="grid grid-cols-2 gap-4">
-                    <div>
-                        <dt className="font-semibold">{t("product_detail.price")}</dt>
-                        <dd className="text-lg font-bold text-green-600">${product.price}</dd>
-                    </div>
-                    <div>
-                        <dt className="font-semibold">{t("product_detail.condition")}</dt>
-                        <dd>{product.condition === "new" ? t("new") : t("used")}</dd>
-                    </div>
-                    <div>
-                        <dt className="font-semibold">{t("product_detail.delivery")}</dt>
-                        <dd>{product.freeShipping ? t("free_shipping") : t("no_shipping_included")}</dd>
-                    </div>
-                </dl>
+            <section className="col-span-6 flex flex-col justify-start">
+                <p className="text-sm --color-mlLightGray">
+                    {product.condition === "new" ? t("new") : t("used")} - {product.soldQuantity} {t("sold")}
+                </p>
+
+                <h1 className="text-[24px]  --color-mlGray">{product.title}</h1>
+
+
+
+                <p className="text-[46px] --color-mlGray my-8">${product.price}</p>
+
+                <button className="w-[250px] bg-[#3483FA] text-white py-3 px-6 rounded-md mt-4 text-lg font-semibold">
+                    {t("buy")}
+                </button>
             </section>
 
-            <section className="mt-6">
-                <h2 className="text-xl font-semibold text-gray-800">{t("product_detail.description")}</h2>
-                <p className="text-gray-700 leading-relaxed">{product.description}</p>
+            <section className="col-span-12 ml-8 pt-6">
+                <h2 className="text-[28px] --color-mlGray my-8">{t("product_detail.description")}</h2>
+                <p className="text-[16px] --color-mlLightGray leading-relaxed">{product.description}</p>
             </section>
         </article>
     );

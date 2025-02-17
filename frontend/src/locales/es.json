@@ -2,10 +2,18 @@
   "search_placeholder": "Nunca dejes de buscar",
   "search_button": "Buscar",
   "search_label": "Busque sus productos.",
+  "error_api_message": "Temporalment fuera de servicio, intente más tarde.",
+  "sold": "Vendidos",
+  "free_shipping": "Envío gratis",
   "select_language": "Elija su idioma.",
+  "no_shipping_included": "No incluído",
   "loading": "Cargando...",
+  "buy": "Comprar",
+  "new": "Nuevo",
+  "used": "Usado",
   "reload_page": "Recargar página",
   "no_results": "No se encontraron productos.",
+  "no_products_found": "No hay productos con ese término. Vuelva a intentar",
   "error": "Error al obtener los datos.",
   "results_for": "Resultados para",
   "homepage_message": "Hello",
@@ -13,6 +21,6 @@
     "price": "Precio:",
     "condition": "Condición:",
     "delivery": "Envío:",
-    "description": "Descripción: "
+    "description": "Descripción del producto"
   }
 }

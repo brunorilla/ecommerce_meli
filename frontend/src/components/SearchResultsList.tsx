@@ -1,15 +1,17 @@
 import SearchResultsItem from "./SearchResultsItem";
-import {Product} from "../adapters/productAdapter.ts";
+import { Product } from "../adapters/productAdapter.ts";
 
 interface SearchResultsListProps {
-    results: Product[]
+    results: Product[];
 }
 
-const SearchResultsList = ({results}: SearchResultsListProps) => {
+const SearchResultsList = ({ results }: SearchResultsListProps) => {
     return (
         <ul className="grid grid-cols-12 gap-4">
-            {results.map((product: Product) => (
-                <li className={"col-span-12 p-4 border-b border-gray-200"} key={product.id}><SearchResultsItem  product={product} /></li>
+            {results.slice(0, 4).map((product: Product, index) => (
+                <li className="col-span-12 p-4" key={product.id}>
+                    <SearchResultsItem product={product} isLast={index === Math.min(3, results.length - 1)} />
+                </li>
             ))}
         </ul>
     );

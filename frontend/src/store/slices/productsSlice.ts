@@ -18,6 +18,7 @@ interface Product {
     imageUrl: string;
     condition: string;
     freeShipping: boolean;
+    location: string;
 }
 
 interface ProductDetail extends Product {
