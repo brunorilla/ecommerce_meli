@@ -21,6 +21,7 @@ export interface Product {
     picture: string;
     condition: string;
     free_shipping: boolean;
+    location: string
 }
 
 export interface ProductDetail extends Product {

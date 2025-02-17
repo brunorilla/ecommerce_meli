@@ -39,6 +39,7 @@ export class ProductService {
             picture: item.thumbnail,
             condition: item.condition,
             free_shipping: item.shipping.free_shipping,
+            location: `${item.address?.city_name || "Ciudad desconocida"}, ${item.address?.state_name || "Provincia desconocida"}`
         }));
 
         return {author: AUTHOR, categories, items};
@@ -71,6 +72,7 @@ export class ProductService {
                 condition: item.condition,
                 free_shipping: item.shipping.free_shipping,
                 sold_quantity: item.sold_quantity,
+                location: `${item.seller_address?.city?.name || "Ciudad desconocida"}, ${item.seller_address?.state?.name || "Provincia desconocida"}`,
                 description,
                 categories
             }
