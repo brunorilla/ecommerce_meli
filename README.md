@@ -10,7 +10,6 @@ Este es un proyecto full stack de un e-commerce, desarrollado con un backend en 
 - Express
 - TypeScript
 - Jest para testing
-- Supertest para pruebas de integración
 - Axios para llamadas HTTP
 
 ### Frontend
@@ -49,7 +48,7 @@ npm install
 Crear un archivo `.env` en la carpeta `backend` con las siguientes variables:
 
 ```env
-PORT=3001
+PORT=5000
 ```
 
 #### 📌 Ejecutar el backend en modo desarrollo
