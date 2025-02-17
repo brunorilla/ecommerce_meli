@@ -36,14 +36,14 @@ cd ecommerce
 
 ### 2️⃣ Configurar el backend
 
-#### 📌 Instalar dependencias
+####  Instalar dependencias
 
 ```sh
 cd backend
-npm install
+yarn
 ```
 
-#### 📌 Configurar variables de entorno
+####  Configurar variables de entorno
 
 Crear un archivo `.env` en la carpeta `backend` con las siguientes variables:
 
@@ -51,39 +51,39 @@ Crear un archivo `.env` en la carpeta `backend` con las siguientes variables:
 PORT=5000
 ```
 
-#### 📌 Ejecutar el backend en modo desarrollo
+####  Ejecutar el backend en modo desarrollo
 
 ```sh
-npm run dev
+yarn dev
 ```
 
 El backend se ejecutará en `http://localhost:5000`.
 
-#### 📌 Construir y ejecutar el backend en producción
+####  Construir y ejecutar el backend en producción
 
 ```sh
-npm run build
-npm start
+yarn build
+yarn start
 ```
 
-#### 📌 Ejecutar tests en el backend
+####  Ejecutar tests en el backend
 
 ```sh
-npm run test
+yarn test
 ```
 
 ---
 
 ### 3️⃣ Configurar el frontend
 
-#### 📌 Instalar dependencias
+####  Instalar dependencias
 
 ```sh
 cd ../frontend
-npm install
+yarn
 ```
 
-#### 📌 Configurar variables de entorno
+####  Configurar variables de entorno
 
 Crear un archivo `.env` en la carpeta `frontend` con las siguientes variables:
 
@@ -91,67 +91,67 @@ Crear un archivo `.env` en la carpeta `frontend` con las siguientes variables:
 VITE_API_URL=http://localhost:5000
 ```
 
-#### 📌 Ejecutar el frontend en modo desarrollo
+####  Ejecutar el frontend en modo desarrollo
 
 ```sh
-npm run dev
+yarn dev
 ```
 
 El frontend se ejecutará en `http://localhost:5173` por defecto.
 
-#### 📌 Construir el frontend para producción
+####  Construir el frontend para producción
 
 ```sh
-npm run build
+yarn build
 ```
 
-#### 📌 Ejecutar tests en el frontend
+####  Ejecutar tests en el frontend
 
 ```sh
-npm run test
+yarn test
 ```
 
 ---
 
-## 🏗️ Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```
-📦 ecommerce
- ┣ 📂 backend
- ┃ ┣ 📂 src
- ┃ ┃ ┣ 📂 controllers
- ┃ ┃ ┣ 📂 infrastructure
- ┃ ┃ ┣ 📂 services
- ┃ ┃ ┣ 📂 tests
- ┃ ┃ ┣ 📜 index.ts
- ┃ ┃ ┗ 📜 app.ts
- ┃ ┣ 📜 package.json
- ┃ ┣ 📜 tsconfig.json
- ┃ ┣ 📜 jest.config.js
- ┃ ┗ 📜 .env
- ┣ 📂 frontend
- ┃ ┣ 📂 src
- ┃ ┃ ┣ 📂 components
- ┃ ┃ ┣ 📂 hooks
- ┃ ┃ ┣ 📂 pages
- ┃ ┃ ┣ 📂 store
- ┃ ┃ ┣ 📂 styles
- ┃ ┃ ┣ 📂 tests
- ┃ ┃ ┣ 📜 main.tsx
- ┃ ┃ ┗ 📜 App.tsx
- ┃ ┣ 📜 package.json
- ┃ ┣ 📜 tsconfig.json
- ┃ ┣ 📜 vite.config.ts
- ┃ ┗ 📜 .env
- ┣ 📜 README.md
- ┗ 📜 .gitignore
+ ecommerce
+ ┣  backend
+ ┃ ┣  src
+ ┃ ┃ ┣  controllers
+ ┃ ┃ ┣  infrastructure
+ ┃ ┃ ┣  services
+ ┃ ┃ ┣  tests
+ ┃ ┃ ┣  index.ts
+ ┃ ┃ ┗  app.ts
+ ┃ ┣  package.json
+ ┃ ┣  tsconfig.json
+ ┃ ┣  jest.config.js
+ ┃ ┗  .env
+ ┣  frontend
+ ┃ ┣  src
+ ┃ ┃ ┣  components
+ ┃ ┃ ┣  hooks
+ ┃ ┃ ┣  pages
+ ┃ ┃ ┣  store
+ ┃ ┃ ┣  styles
+ ┃ ┃ ┣  tests
+ ┃ ┃ ┣  main.tsx
+ ┃ ┃ ┗  App.tsx
+ ┃ ┣  package.json
+ ┃ ┣  tsconfig.json
+ ┃ ┣  vite.config.ts
+ ┃ ┗  .env
+ ┣  README.md
+ ┗  .gitignore
 ```
 
 ---
 
-## 📌 Endpoints de la API
+##  Endpoints de la API
 
-### 🔍 Búsqueda de productos
+### Búsqueda de productos
 
 ```
 GET /api/items?q=:query
@@ -159,7 +159,7 @@ GET /api/items?q=:query
 
 **Ejemplo:** `GET http://localhost:5000/api/items?q=iphone`
 
-### 🔎 Detalle de producto
+### Detalle de producto
 
 ```
 GET /api/items/:id
@@ -168,14 +168,4 @@ GET /api/items/:id
 **Ejemplo:** `GET http://localhost:5000/api/items/MLA12345`
 
 ---
-
-## 📜 Licencia
-
-Este proyecto está bajo la licencia MIT.
-
----
-
-## 📞 Contacto
-
-Si tienes dudas o sugerencias, puedes contactarme en [[tu-email@example.com](mailto\:tu-email@example.com)].
 
