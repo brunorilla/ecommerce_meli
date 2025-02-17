@@ -1,6 +1,6 @@
 import axios from "axios";
-import { ProductService } from "../ProductService";
-import { SearchResult, ProductDetailResult } from "../../domain/Product";
+import {ProductService} from "../ProductService";
+import {SearchResult, ProductDetailResult} from "../../domain/Product";
 
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -20,8 +20,8 @@ describe("ProductService", () => {
                             values: [
                                 {
                                     path_from_root: [
-                                        { id: "cat1", name: "Phones" },
-                                        { id: "cat2", name: "Smartphones" },
+                                        {id: "cat1", name: "Phones"},
+                                        {id: "cat2", name: "Smartphones"},
                                     ],
                                 },
                             ],
@@ -35,7 +35,9 @@ describe("ProductService", () => {
                             currency_id: "USD",
                             thumbnail: "http://example.com/iphone12.jpg",
                             condition: "new",
-                            shipping: { free_shipping: true },
+                            shipping: {free_shipping: true},
+                            address: {city_name: 'burzaco', state_name: "Buenos Aires"}
+
                         },
                         {
                             id: "2",
@@ -44,7 +46,9 @@ describe("ProductService", () => {
                             currency_id: "USD",
                             thumbnail: "http://example.com/iphone13.jpg",
                             condition: "new",
-                            shipping: { free_shipping: false },
+                            shipping: {free_shipping: false},
+                            address: {city_name: 'burzaco', state_name: "Buenos Aires"}
+
                         },
                     ],
                 },
@@ -59,10 +63,10 @@ describe("ProductService", () => {
             );
 
             expect(result).toEqual({
-                author: { name: "Bruno", lastname: "Rilla Santiago" },
+                author: {name: "Bruno", lastname: "Rilla Santiago"},
                 categories: [
-                    { id: "cat1", name: "Phones" },
-                    { id: "cat2", name: "Smartphones" },
+                    {id: "cat1", name: "Phones"},
+                    {id: "cat2", name: "Smartphones"},
                 ],
                 items: [
                     {
@@ -77,6 +81,7 @@ describe("ProductService", () => {
                         picture: "http://example.com/iphone12.jpg",
                         condition: "new",
                         free_shipping: true,
+                        location: "burzaco, Buenos Aires"
                     },
                     {
                         id: "2",
@@ -90,6 +95,8 @@ describe("ProductService", () => {
                         picture: "http://example.com/iphone13.jpg",
                         condition: "new",
                         free_shipping: false,
+                        location: "burzaco, Buenos Aires"
+
                     },
                 ],
             } as SearchResult);
@@ -107,7 +114,9 @@ describe("ProductService", () => {
                             currency_id: "USD",
                             thumbnail: "http://example.com/iphone12.jpg",
                             condition: "new",
-                            shipping: { free_shipping: true },
+                            shipping: {free_shipping: true},
+                            address: {city_name: 'burzaco', state_name: "Buenos Aires"}
+
                         },
                     ],
                 },
@@ -118,7 +127,7 @@ describe("ProductService", () => {
             const result = await ProductService.searchProducts("iphone");
 
             expect(result.categories).toEqual([
-                { id: "unknown", name: "Categoría indeterminada" },
+                {id: "unknown", name: "Categoría indeterminada"},
             ]);
         });
     });
@@ -134,7 +143,7 @@ describe("ProductService", () => {
                 currency_id: "USD",
                 thumbnail: "http://example.com/product123.jpg",
                 condition: "used",
-                shipping: { free_shipping: false },
+                shipping: {free_shipping: false},
                 sold_quantity: 10,
                 category_id: "cat123",
             };
@@ -145,20 +154,20 @@ describe("ProductService", () => {
 
             const categoryData = {
                 path_from_root: [
-                    { id: "cat1", name: "Electronics" },
-                    { id: "cat2", name: "Gadgets" },
+                    {id: "cat1", name: "Electronics"},
+                    {id: "cat2", name: "Gadgets"},
                 ],
             };
 
             mockedAxios.get
-                .mockResolvedValueOnce({ data: itemData })
-                .mockResolvedValueOnce({ data: descriptionData })
-                .mockResolvedValueOnce({ data: categoryData });
+                .mockResolvedValueOnce({data: itemData})
+                .mockResolvedValueOnce({data: descriptionData})
+                .mockResolvedValueOnce({data: categoryData});
 
             const result = await ProductService.getProductDetail(id);
 
             const expectedResult: ProductDetailResult = {
-                author: { name: "Bruno", lastname: "Rilla Santiago" },
+                author: {name: "Bruno", lastname: "Rilla Santiago"},
                 item: {
                     id: "123",
                     title: "Producto 123",
@@ -174,6 +183,8 @@ describe("ProductService", () => {
                     sold_quantity: 10,
                     description: "Este es un producto de prueba",
                     categories: categoryData.path_from_root,
+                    location: 'Ciudad desconocida, Provincia desconocida'
+
                 },
             };
 

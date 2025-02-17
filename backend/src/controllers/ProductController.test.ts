@@ -41,6 +41,8 @@ describe("ProductController", () => {
                         picture: "url",
                         condition: "new",
                         free_shipping: true,
+                        location: "burzaco, Buenos Aires"
+
                     },
                 ],
             };
@@ -73,6 +75,8 @@ describe("ProductController", () => {
                         picture: "url",
                         condition: "new",
                         free_shipping: false,
+                        location: "burzaco, Buenos Aires"
+
                     },
                 ],
             };
@@ -138,6 +142,7 @@ describe("ProductController", () => {
                     sold_quantity: 5,
                     description: "Some description",
                     categories: [{ id: "cat1", name: "Test Category" }],
+                    location: "burzaco, Buenos Aires"
                 },
             };
 
